@@ -12,3 +12,5 @@ exemple:
 ```py
 colorprint("coucou", Colors.rouge, Background.vert, False, True)
 ```
+## Demo
+<img src="demo.png" width=203>
