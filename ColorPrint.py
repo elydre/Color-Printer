@@ -9,6 +9,18 @@ def colorprint(text,color="",background="",gras=False,ligne=False):
             style = "\033[04m"
         print(f"{color}{style}{background}"+text+f"\033[0m")
 
+def colorinput(text,color="",background="",gras=False,ligne=False):
+    style = ""
+    if gras == True and ligne == True:
+        temp = input(f"{color}\033[01m\033[04m{background}"+text+f"\033[0m")
+    else:
+        if gras == False and ligne == True:
+            style = "\033[01m"
+        elif gras == True and ligne == False:
+            style = "\033[04m"
+        temp = input(f"{color}{style}{background}"+text+f"\033[0m")
+        return(temp)
+
 class Colors:
     none = ""
     noir = "\033[30m"
