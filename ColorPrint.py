@@ -10,38 +10,26 @@
                ██
 .codé en : UTF-8
 .langage : python 3
-.note    :
 --|~|--|~|--|~|--|~|--|~|--|~|--
 '''
 
-def colorprint(text,color="",background="",gras=False,ligne=False,end=True):
+def colorprint(text,color="",background="",ligne=False,gras=False,end=True):
     style = ""
-    if gras and ligne:
-        print(f"{color}\033[01m\033[04m{background}"+text + '\x1b[0m', end="")
-    else:
-        if not gras and ligne:
-            style = "\033[01m"
-        elif gras:
-            style = "\033[04m"
-        print(f"{color}{style}{background}"+text + '\x1b[0m', end="")
-    if end:
-        print("")
+    if gras: style += "\033[01m"
+    if ligne: style += "\033[04m"
+    print(f"{color}{style}{background}"+text + '\x1b[0m', end="\n" if end else "")
 
 
-def colorinput(text,color="",background="",gras=False,ligne=False):
+def colorinput(text,color="",background="",ligne=False,gras=False):
     style = ""
-    if gras and ligne:
-        temp = input(f"{color}\033[01m\033[04m{background}"+text + '\x1b[0m')
-    else:
-        if not gras and ligne:
-            style = "\033[01m"
-        elif gras:
-            style = "\033[04m"
-        temp = input(f"{color}{style}{background}"+text + '\x1b[0m')
-        return(temp)
+    if gras: style += "\033[01m"
+    if ligne: style += "\033[04m"
+    return input(f"{color}{style}{background}"+text + '\x1b[0m')
 
 class Colors:
     none = ""
+
+    # en
     black = "\033[30m"
     red = "\033[31m"
     green = "\033[32m"
@@ -50,7 +38,8 @@ class Colors:
     purple = "\033[35m"
     light_blue = "\033[36m"
     white = "\033[37m"
-    #rétrocompatibilité
+
+    # fr
     noir = "\033[30m"
     rouge = "\033[31m"
     vert = "\033[32m"
@@ -62,6 +51,8 @@ class Colors:
 
 class Background:
     none = ""
+
+    # en
     black = "\033[40m"
     red = "\033[41m"
     green = "\033[42m"
@@ -70,7 +61,8 @@ class Background:
     purple = "\033[45m"
     light_blue = "\033[46m"
     white = "\033[47m"
-    #rétrocompatibilité
+
+    # fr
     noir = "\033[40m"
     rouge = "\033[41m"
     vert = "\033[42m"
