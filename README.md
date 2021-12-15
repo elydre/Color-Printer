@@ -6,13 +6,9 @@ Téléchargez le repository, ColorPrint.py correspond au module et le fichier ex
 ```py
 colorprint(text, color, code)
 ```
-text: texte à afficher
-color: couleur du texte (nom anglais ou code hex)
-code:
-- "b" gras
-- "u" souligné
-- "k" désactivé saut de ligne
-(peut être combiné)
+- text: texte à afficher
+- color: couleur du texte (nom anglais ou code hex)
+- code: "b" gras, "u" souligné, "k" désactivé saut de ligne (peut être combiné)
 
 ## exemple:
 
