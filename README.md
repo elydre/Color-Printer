@@ -17,5 +17,6 @@ colorprint("coucou", "red")
 colorprint("coucou", "green", "b")
 colorprint("coucou", "white", "bk")
 colorprint("coucou", "#666600")
+colorprint("coucou", "#987654", "bu")
 ```
 <img src="demo.png">
