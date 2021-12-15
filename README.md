@@ -1,16 +1,25 @@
-# Color Printer
-## Description
-Color printer est un module permettant de faire des print custom (couleur, style, arrière plans…) tout simplement.
-## Installation
+# Installation
 Téléchargez le repository, ColorPrint.py correspond au module et le fichier exemple.py permet d’avoir un aperçut de ses possibilités.
-## Utilisation
-syntaxe:
-```
-colorprint([text], Colors.[nom de la couleur], Background.[nom de l’arrière plans], [soulignage True/Fasle], [gras True/Fasle])
-```
-exemple:
+# Utilisation
+
+## syntaxe:
 ```py
-colorprint("coucou", Colors.rouge, Background.vert, False, True)
+colorprint(text, color, code)
 ```
-## Demo
-<img src="demo.png" width=203>
+text: texte à afficher
+color: couleur du texte (nom anglais ou code hex)
+code:
+- "b" gras
+- "u" souligné
+- "k" désactivé saut de ligne
+(peut être combiné)
+
+## exemple:
+
+```py
+colorprint("coucou", "red")
+colorprint("coucou", "green", "b")
+colorprint("coucou", "white", "bk")
+colorprint("coucou", "#666600")
+```
+<img src="demo.png">

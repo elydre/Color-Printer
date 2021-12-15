@@ -13,61 +13,71 @@
 --|~|--|~|--|~|--|~|--|~|--|~|--
 '''
 
-def colorprint(text,color="",background="",ligne=False,gras=False,end=True):
+def hex2rgb(value):
+    value = value.lstrip('#')
+    lv = len(value)
+    rgb = tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
+    return rgb[0], rgb[1], rgb[2]
+
+colors = {
+    "red": (255, 0, 0),
+    "green": (0, 255, 0),
+    "blue": (0, 0, 255),
+    "yellow": (255, 255, 0),
+    "cyan": (0, 255, 255),
+    "magenta": (255, 0, 255),
+    "white": (255, 255, 255),
+    "black": (0, 0, 0),
+    "gray": (127, 127, 127),
+}
+
+def decodecolor(color):
+    r, g, b = 0, 0, 0
+    color = str(color)
+    if color.startswith("#"):
+        r, g, b = hex2rgb(color)
+    elif color in colors:
+        r, g, b = colors[color]
+    return r, g, b
+
+
+def colorprint(text: str, color="", code = "") -> None:
+    """
+    text:       str
+    color:      Colors.green
+    code:
+       "b" - bold
+       "u" - underline
+       "k" - do not go to the line
+       (can be combined)
+    """
+
     style = ""
-    if gras: style += "\033[01m"
-    if ligne: style += "\033[04m"
-    print(f"{color}{style}{background}"+text + '\x1b[0m', end="\n" if end else "")
+    if "b" in code: style += "\033[01m"
+    if "u" in code: style += "\033[04m"
+    endl = "\n" if "k" not in code else ""
+    r, g, b = decodecolor(color)
+    print(f"{style}\033[38;2;{r};{g};{b}m{text}\033[38;2;255;255;255m\033[00m", end = endl, flush = True)
 
 
-def colorinput(text,color="",background="",ligne=False,gras=False):
+def colorinput(text: str, color="", code = "") -> None:
+    """
+    text:       str
+    color:      Colors.green
+    code:
+       "b" - bold
+       "u" - underline
+       (can be combined)
+    """
+
     style = ""
-    if gras: style += "\033[01m"
-    if ligne: style += "\033[04m"
-    return input(f"{color}{style}{background}"+text + '\x1b[0m')
+    if "b" in code: style += "\033[01m"
+    if "u" in code: style += "\033[04m"
+    r, g, b = decodecolor(color)
+    return input(f"{style}\033[38;2;{r};{g};{b}m{text}\033[38;2;255;255;255m\033[00m")
 
-class Colors:
-    none = ""
-
-    # en
-    black = "\033[30m"
-    red = "\033[31m"
-    green = "\033[32m"
-    yellow = "\033[33m"
-    blue = "\033[34m"
-    purple = "\033[35m"
-    light_blue = "\033[36m"
-    white = "\033[37m"
-
-    # fr
-    noir = "\033[30m"
-    rouge = "\033[31m"
-    vert = "\033[32m"
-    jaune = "\033[33m"
-    bleu = "\033[34m"
-    magenta = "\033[35m"
-    cyan = "\033[36m"
-    blanc = "\033[37m"
-
-class Background:
-    none = ""
-
-    # en
-    black = "\033[40m"
-    red = "\033[41m"
-    green = "\033[42m"
-    yellow = "\033[43m"
-    blue = "\033[44m"
-    purple = "\033[45m"
-    light_blue = "\033[46m"
-    white = "\033[47m"
-
-    # fr
-    noir = "\033[40m"
-    rouge = "\033[41m"
-    vert = "\033[42m"
-    jaune = "\033[43m"
-    bleu = "\033[44m"
-    magenta = "\033[45m"
-    cyan = "\033[46m"
-    blanc = "\033[47m"
+if __name__ == "__main__":
+    for s in ["","b","bu"]:
+        for c in colors:
+            colorprint(f"color: '{c}'  -  style: '{s}'", c, s)
+        print()
