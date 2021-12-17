@@ -31,6 +31,9 @@ colors = {
     "gray": (127, 127, 127),
 }
 
+def addcolor(name, value):
+    colors[name] = value
+
 def decodecolor(color):
     r, g, b = 0, 0, 0
     color = str(color)
