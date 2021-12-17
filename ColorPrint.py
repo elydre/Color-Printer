@@ -13,6 +13,8 @@
 --|~|--|~|--|~|--|~|--|~|--|~|--
 '''
 
+version = "v0.2.3"
+
 def hex2rgb(value):
     value = value.lstrip('#')
     lv = len(value)
@@ -31,7 +33,15 @@ colors = {
     "gray": (127, 127, 127),
 }
 
-def addcolor(name, value):
+def setcolor(name, value):
+    """
+    add or edit a color
+
+    --|~|--|~|--|~|--|~|--
+
+    name:       str
+    value:      tuple(int, int, int)
+    """
     colors[name] = value
 
 def decodecolor(color):
@@ -46,6 +56,10 @@ def decodecolor(color):
 
 def colorprint(text: str, color="", code = "") -> None:
     """
+        colored print
+
+    --|~|--|~|--|~|--|~|--
+
     text:       str
     color:      Colors.green
     code:
@@ -65,6 +79,11 @@ def colorprint(text: str, color="", code = "") -> None:
 
 def colorinput(text: str, color="", code = "") -> None:
     """
+
+        colored input
+
+    --|~|--|~|--|~|--|~|--
+
     text:       str
     color:      Colors.green
     code:
