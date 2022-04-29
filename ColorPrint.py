@@ -13,7 +13,7 @@
 --|~|--|~|--|~|--|~|--|~|--|~|--
 '''
 
-version = "v0.2.3"
+version = "v0.2.4"
 
 def hex2rgb(value):
     value = value.lstrip('#')
@@ -46,8 +46,9 @@ def setcolor(name, value):
 
 def decodecolor(color):
     r, g, b = 0, 0, 0
-    color = str(color)
-    if color.startswith("#"):
+    if isinstance(color, tuple):
+        r, g, b = color
+    elif color.startswith("#"):
         r, g, b = hex2rgb(color)
     elif color in colors:
         r, g, b = colors[color]
@@ -79,7 +80,6 @@ def colorprint(text: str, color="", code = "") -> None:
 
 def colorinput(text: str, color="", code = "") -> None:
     """
-
         colored input
 
     --|~|--|~|--|~|--|~|--
